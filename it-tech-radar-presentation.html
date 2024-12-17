@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Tech Radar Presentation</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .navbar, .footer {
+            background-color: #f8f9fa;
+        }
+        .footer {
+            padding: 10px 0;
+        }
+        .slide {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+        .active-slide {
+            display: block;
+        }
+        .navigation {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">IT Tech Radar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../it-projects-poc/index.html">Projects POC</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="text-center">IT Tech Radar Presentation</h1>
+        <div id="slide1" class="slide active-slide">
+            <h2>Introduction</h2>
+            <p>Welcome to the IT Tech Radar presentation. This presentation will cover the latest trends and technologies in the IT industry.</p>
+        </div>
+        <div id="slide2" class="slide">
+            <h2>Emerging Technologies</h2>
+            <ul>
+                <li>Artificial Intelligence and Machine Learning</li>
+                <li>Blockchain</li>
+                <li>Internet of Things (IoT)</li>
+                <li>Quantum Computing</li>
+            </ul>
+        </div>
+        <div id="slide3" class="slide">
+            <h2>Current Trends</h2>
+            <ul>
+                <li>Cloud Computing</li>
+                <li>5G Networks</li>
+                <li>Cybersecurity Enhancements</li>
+                <li>Remote Work Technologies</li>
+            </ul>
+        </div>
+        <div id="slide4" class="slide">
+            <h2>Conclusion</h2>
+            <p>These technologies are shaping the future of IT and will continue to drive innovation in the industry.</p>
+        </div>
+        <div class="navigation text-center">
+            <button id="prev" class="btn btn-secondary">Previous</button>
+            <button id="next" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 4;
+
+        document.getElementById('prev').addEventListener('click', () => {
+            if (currentSlide > 1) {
+                document.getElementById(`slide${currentSlide}`).classList.remove('active-slide');
+                currentSlide--;
+                document.getElementById(`slide${currentSlide}`).classList.add('active-slide');
+            }
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            if (currentSlide < totalSlides) {
+                document.getElementById(`slide${currentSlide}`).classList.remove('active-slide');
+                currentSlide++;
+                document.getElementById(`slide${currentSlide}`).classList.add('active-slide');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Project - IT Tech Radar</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .form-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .tag-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+        .tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .tag button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0;
+            font-size: 1.2rem;
+        }
+        .required::after {
+            content: "*";
+            color: red;
+            margin-left: 0.25rem;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-button:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">IT Tech Radar</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Submit a Project</h1>
+            <p>Share your IT project with the Melbourne tech community. Fields marked with * are required.</p>
+
+            <form id="projectForm" onsubmit="handleSubmit(event)">
+                <!-- Basic Information -->
+                <div class="form-section">
+                    <h2>Basic Information</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required" for="projectName">Project Name</label>
+                            <input type="text" id="projectName" name="projectName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="organization">Organization</label>
+                            <input type="text" id="organization" name="organization" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="description">Project Description</label>
+                        <textarea id="description" name="description" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Project Details -->
+                <div class="form-section">
+                    <h2>Project Details</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required" for="sector">Sector</label>
+                            <select id="sector" name="sector" required>
+                                <option value="">Select a sector</option>
+                                <option value="fintech">Fintech</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="retail">Retail</option>
+                                <option value="education">Education</option>
+                                <option value="government">Government</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="logistics">Logistics</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="projectStage">Project Stage</label>
+                            <select id="projectStage" name="projectStage" required>
+                                <option value="">Select stage</option>
+                                <option value="planning">Planning</option>
+                                <option value="inProgress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required" for="startDate">Start Date</label>
+                            <input type="date" id="startDate" name="startDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">Expected End Date</label>
+                            <input type="date" id="endDate" name="endDate">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology Stack -->
+                <div class="form-section">
+                    <h2>Technology Stack</h2>
+                    <div class="form-group">
+                        <label class="required" for="technologies">Technologies Used</label>
+                        <div class="tag-input" id="techTags">
+                            <!-- Tags will be inserted here -->
+                        </div>
+                        <input type="text" id="techInput" placeholder="Type a technology and press Enter">
+                        <small>Press Enter to add a technology</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="frameworks">Frameworks & Tools</label>
+                        <div class="tag-input" id="frameworkTags">
+                            <!-- Tags will be inserted here -->
+                        </div>
+                        <input type="text" id="frameworkInput" placeholder="Type a framework/tool and press Enter">
+                        <small>Press Enter to add a framework or tool</small>
+                    </div>
+                </div>
+
+                <!-- Location Information -->
+                <div class="form-section">
+                    <h2>Location Information</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required" for="city">City</label>
+                            <input type="text" id="city" name="city" value="Melbourne" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="suburb">Suburb</label>
+                            <input type="text" id="suburb" name="suburb">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="form-section">
+                    <h2>Contact Information</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required" for="contactName">Contact Name</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="contactEmail">Contact Email</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">Contact Phone</label>
+                        <input type="tel" id="contactPhone" name="contactPhone">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">Submit Project</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>IT Tech Radar</h3>
+                <p>Your gateway to technology initiatives in the city.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li>Email: info@ittechradar.com.au</li>
+                    <li>Phone: 0467735440</li>
+                    <li>Address: Melbourne, Australia</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tag Management
+        function initializeTagInput(inputId, tagsContainerId) {
+            const input = document.getElementById(inputId);
+            const tagsContainer = document.getElementById(tagsContainerId);
+            const tags = new Set();
+
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const value = input.value.trim();
+                    if (value && !tags.has(value)) {
+                        tags.add(value);
+                        const tag = document.createElement('span');
+                        tag.className = 'tag';
+                        tag.innerHTML = `
+                            ${value}
+                            <button type="button" onclick="this.parentElement.remove()">×</button>
+                        `;
+                        tagsContainer.appendChild(tag);
+                        input.value = '';
+                    }
+                }
+            });
+        }
+
+        // Initialize tag inputs
+        initializeTagInput('techInput', 'techTags');
+        initializeTagInput('frameworkInput', 'frameworkTags');
+
+        // Form Submission
+        async function handleSubmit(event) {
+            event.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+
+            // Add tags
+            data.technologies = Array.from(document.querySelectorAll('#techTags .tag'))
+                .map(tag => tag.textContent.trim().replace('×', ''));
+            data.frameworks = Array.from(document.querySelectorAll('#frameworkTags .tag'))
+                .map(tag => tag.textContent.trim().replace('×', ''));
+
+            // Convert dates to ISO format
+            if (data.startDate) {
+                data.startDate = new Date(data.startDate).toISOString().split('T')[0];
+            }
+            if (data.endDate) {
+                data.endDate = new Date(data.endDate).toISOString().split('T')[0];
+            }
+
+            try {
+                const response = await fetch('http://localhost:5000/api/projects', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(result.error || 'Failed to submit project');
+                }
+
+                alert('Project submitted successfully!');
+                event.target.reset();
+                document.querySelectorAll('.tag').forEach(tag => tag.remove());
+            } catch (error) {
+                console.error('Error submitting project:', error);
+                alert(error.message || 'Error submitting project. Please try again.');
+            }
+        }
+
+        // Set minimum date for date inputs
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('startDate').min = today;
+        document.getElementById('endDate').min = today;
+    </script>
+</body>
+</html>

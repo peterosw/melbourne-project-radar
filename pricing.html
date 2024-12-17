@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Melbourne Project Radar</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-dark: #0056b3;
+            --secondary-color: #ffffff;
+            --text-color: #000000;
+            --card-background: #ffffff;
+            --border-radius: 0.25rem;
+            --transition: 0.2s ease-in-out;
+        }
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+        }
+        .navbar, .footer {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+        .navbar a, .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .navbar a:hover, .footer a:hover {
+            text-decoration: underline;
+        }
+        .pricing-toggle {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .pricing-card {
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .price {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+        .features-list li {
+            padding: 0.5rem 0;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list li::before {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            width: 20px;
+            display: inline-block;
+        }
+
+        .feature-check::before {
+            content: "✓";
+            color: #28a745;
+        }
+
+        .feature-cross::before {
+            content: "✗";
+            color: #dc3545;
+        }
+
+        .feature-group {
+            margin: 1.5rem 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        .feature-group-title {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+        .btn-subscribe {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-subscribe:hover {
+            background-color: var(--primary-dark);
+        }
+        .popular {
+            position: relative;
+            border: 2px solid var(--primary-color);
+        }
+        .popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 0.25rem 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+        }
+        .savings-badge {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Melbourne Project Radar</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link active" href="pricing.html">Pricing</a></li>
+                <li class="nav-item"><a class="nav-link" href="dashboard.html">My Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="pricing-container">
+        <div class="header">
+            <h1>Choose Your Plan</h1>
+            <p>Get access to Melbourne's most comprehensive IT project database</p>
+        </div>
+
+        <div class="pricing-toggle">
+            <label class="switch">
+                <input type="checkbox" id="billing-toggle">
+                <span class="slider">
+                    Monthly
+                    <span class="annual">Annual</span>
+                </span>
+            </label>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="price">
+                    Free
+                    <small>/forever</small>
+                </div>
+                <p>Perfect for getting started</p>
+                <ul class="features-list">
+                    <div class="feature-group">
+                        <div class="feature-group-title">Core Features</div>
+                        <li class="feature-check">View Project Names</li>
+                        <li class="feature-check">Basic Project Details</li>
+                        <li class="feature-check">Project Locations</li>
+                        <li class="feature-check">Industry Categories</li>
+                        <li class="feature-cross">Technology Stack Details</li>
+                        <li class="feature-cross">Project Timeline Data</li>
+                    </div>
+                    <div class="feature-group">
+                        <div class="feature-group-title">Dashboard Access</div>
+                        <li class="feature-check">Basic Dashboard View</li>
+                        <li class="feature-cross">Custom Dashboards</li>
+                        <li class="feature-cross">Advanced Analytics</li>
+                        <li class="feature-cross">Data Export</li>
+                    </div>
+                    <div class="feature-group">
+                        <div class="feature-group-title">Additional Features</div>
+                        <li class="feature-cross">Project Contacts</li>
+                        <li class="feature-cross">Budget Information</li>
+                        <li class="feature-cross">API Access</li>
+                    </div>
+                </ul>
+                <a href="login.html" class="btn-subscribe">Get Started</a>
+            </div>
+            <div class="pricing-card popular">
+                <h3>Pro</h3>
+                <div class="price" id="pro-price">
+                    $50
+                    <small>/month</small>
+                </div>
+                <p>For professionals and teams</p>
+                <ul class="features-list">
+                    <div class="feature-group">
+                        <div class="feature-group-title">Core Features</div>
+                        <li class="feature-check">View Project Names</li>
+                        <li class="feature-check">Detailed Project Information</li>
+                        <li class="feature-check">Project Locations</li>
+                        <li class="feature-check">Industry Categories</li>
+                        <li class="feature-check">Technology Stack Details</li>
+                        <li class="feature-check">Project Timeline Data</li>
+                    </div>
+                    <div class="feature-group">
+                        <div class="feature-group-title">Dashboard Access</div>
+                        <li class="feature-check">Advanced Dashboard</li>
+                        <li class="feature-check">3 Custom Dashboards</li>
+                        <li class="feature-check">Basic Analytics</li>
+                        <li class="feature-check">Data Export</li>
+                    </div>
+                    <div class="feature-group">
+                        <div class="feature-group-title">Additional Features</div>
+                        <li class="feature-cross">Project Contacts</li>
+                        <li class="feature-check">Basic Budget Data</li>
+                        <li class="feature-cross">API Access</li>
+                    </div>
+                </ul>
+                <a href="login.html" class="btn-subscribe">Start Pro Trial</a>
+                <div class="savings-badge" id="pro-savings">Save $100 annually</div>
+            </div>
+            <div class="pricing-card">
+                <h3>Ultra Pro</h3>
+                <div class="price" id="ultra-price">
+                    $100
+                    <small>/month</small>
+                </div>
+                <p>For enterprise and power users</p>
+                <ul class="features-list">
+                    <div class="feature-group">
+                        <div class="feature-group-title">Core Features</div>
+                        <li class="feature-check">View Project Names</li>
+                        <li class="feature-check">Full Project Information</li>
+                        <li class="feature-check">Project Locations</li>
+                        <li class="feature-check">Industry Categories</li>
+                        <li class="feature-check">Technology Stack Details</li>
+                        <li class="feature-check">Detailed Timeline Data</li>
+                    </div>
+                    <div class="feature-group">
+                        <div class="feature-group-title">Dashboard Access</div>
+                        <li class="feature-check">Advanced Dashboard</li>
+                        <li class="feature-check">Unlimited Custom Dashboards</li>
+                        <li class="feature-check">Advanced Analytics</li>
+                        <li class="feature-check">Full Data Export</li>
+                    </div>
+                    <div class="feature-group">
+                        <div class="feature-group-title">Additional Features</div>
+                        <li class="feature-check">Full Contact Information</li>
+                        <li class="feature-check">Complete Budget Data</li>
+                        <li class="feature-check">API Access</li>
+                    </div>
+                </ul>
+                <a href="login.html" class="btn-subscribe">Start Ultra Trial</a>
+                <div class="savings-badge" id="ultra-savings">Save $200 annually</div>
+            </div>
+        </div>
+
+        <div class="card mt-2">
+            <h2>Enterprise Solutions</h2>
+            <p>Need a custom solution for your organization? We offer tailored enterprise plans with:</p>
+            <ul>
+                <li>Custom data integration</li>
+                <li>Dedicated support</li>
+                <li>Team training</li>
+                <li>Custom reporting</li>
+            </ul>
+            <a href="contact.html" class="btn-subscribe">Contact Sales</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>Melbourne Project Radar</h3>
+                <p>Your gateway to technology initiatives in the city.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li>Email: info@ittechradar.com.au</li>
+                    <li>Phone: 0467735440</li>
+                    <li>Address: Melbourne, Australia</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const billingToggle = document.getElementById('billing-toggle');
+        const proPrice = document.getElementById('pro-price');
+        const ultraPrice = document.getElementById('ultra-price');
+        const proSavings = document.getElementById('pro-savings');
+        const ultraSavings = document.getElementById('ultra-savings');
+
+        billingToggle.addEventListener('change', function() {
+            if (this.checked) {
+                // Annual pricing
+                proPrice.innerHTML = '$500<small>/year</small>';
+                ultraPrice.innerHTML = '$1000<small>/year</small>';
+                proSavings.style.display = 'inline-block';
+                ultraSavings.style.display = 'inline-block';
+            } else {
+                // Monthly pricing
+                proPrice.innerHTML = '$50<small>/month</small>';
+                ultraPrice.innerHTML = '$100<small>/month</small>';
+                proSavings.style.display = 'none';
+                ultraSavings.style.display = 'none';
+            }
+        });
+
+        // Initialize
+        proSavings.style.display = 'none';
+        ultraSavings.style.display = 'none';
+    </script>
+</body>
+</html>

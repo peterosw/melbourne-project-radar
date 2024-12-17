@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Melbourne Project Radar</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 2rem auto;
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        .auth-tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            background: #f8f9fa;
+            cursor: pointer;
+            border-bottom: 2px solid #dee2e6;
+        }
+        .auth-tab.active {
+            background: var(--background-color);
+            border-bottom: 2px solid var(--primary-color);
+            font-weight: bold;
+        }
+        .auth-form {
+            padding: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #495057;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+        .auth-links {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .auth-links a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+        .social-login {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .social-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .social-button:hover {
+            background-color: #f8f9fa;
+        }
+        .social-button img {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.5rem;
+        }
+        .error-message {
+            color: #dc3545;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            display: none;
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        .navbar {
+            background-color: var(--background-color);
+            padding: 10px 0;
+        }
+        .navbar a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Melbourne Project Radar</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                <li class="nav-item"><a class="nav-link" href="dashboard.html">My Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link active" href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="auth-container">
+            <div class="card">
+                <h1>Login</h1>
+                <p>Access your Melbourne Project Radar account</p>
+                <div class="auth-tabs">
+                    <div class="auth-tab active" onclick="switchTab('login')">Login</div>
+                    <div class="auth-tab" onclick="switchTab('register')">Register</div>
+                </div>
+                
+                <div id="login-form" class="auth-form">
+                    <form onsubmit="return handleLogin(event)">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                            <div class="error-message" id="login-email-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                            <div class="error-message" id="login-password-error"></div>
+                        </div>
+                        <button type="submit" class="button btn-primary" style="width: 100%">Login</button>
+                        <div class="auth-links">
+                            <a href="#" onclick="alert('Password reset functionality coming soon!')">Forgot Password?</a>
+                        </div>
+                    </form>
+
+                    <div class="social-login">
+                        <p style="color: #666; margin-bottom: 1rem;">Or login with</p>
+                        <button class="social-button" onclick="socialLogin('google')">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
+                            Continue with Google
+                        </button>
+                        <button class="social-button" onclick="socialLogin('linkedin')">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+                            Continue with LinkedIn
+                        </button>
+                    </div>
+                </div>
+
+                <div id="register-form" class="auth-form" style="display: none;">
+                    <form onsubmit="return handleRegister(event)">
+                        <div class="form-group">
+                            <label for="register-name">Full Name</label>
+                            <input type="text" id="register-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" required>
+                            <div class="error-message" id="register-email-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" required>
+                            <div class="error-message" id="register-password-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm-password">Confirm Password</label>
+                            <input type="password" id="register-confirm-password" required>
+                            <div class="error-message" id="register-confirm-password-error"></div>
+                        </div>
+                        <button type="submit" class="button btn-primary" style="width: 100%">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>Melbourne Project Radar</h3>
+                <p>Your gateway to technology initiatives in the city.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li>Email: info@melbourneprojectradar.com.au</li>
+                    <li>Phone: 0467735440</li>
+                    <li>Address: Melbourne, Australia</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(tab) {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const tabs = document.querySelectorAll('.auth-tab');
+            
+            if (tab === 'login') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                tabs[0].classList.add('active');
+                tabs[1].classList.remove('active');
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                tabs[0].classList.remove('active');
+                tabs[1].classList.add('active');
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            // In a real application, you would send this to your server
+            console.log('Login attempt:', { email, password });
+            
+            // Simulate successful login
+            alert('Login successful! Redirecting to dashboard...');
+            window.location.href = 'index.html';
+            return false;
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+
+            if (password !== confirmPassword) {
+                document.getElementById('register-confirm-password-error').textContent = 'Passwords do not match';
+                document.getElementById('register-confirm-password-error').style.display = 'block';
+                return false;
+            }
+
+            // In a real application, you would send this to your server
+            console.log('Registration:', { name, email, password });
+            
+            // Simulate successful registration
+            alert('Registration successful! Please log in.');
+            switchTab('login');
+            return false;
+        }
+
+        function socialLogin(provider) {
+            // In a real application, this would redirect to the OAuth provider
+            alert(`${provider} login coming soon!`);
+        }
+    </script>
+</body>
+</html>
