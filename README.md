@@ -17,3 +17,9 @@ Instructions for setting up the project locally.
 - Peter Oswald
 - Email: info@ittechradar.com.au
 - Phone: 0467735440
+
+## Live Demo
+Visit the live site: [Melbourne Project Radar](https://peterosw.github.io/melbourne-project-radar/)
+
+## Development
+This site is hosted using GitHub Pages. The main branch is automatically deployed to the live site.
